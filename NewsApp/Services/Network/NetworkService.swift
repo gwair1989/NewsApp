@@ -26,9 +26,9 @@ class NetworkService: Networking {
     
     private func prepareHeader() -> [String: String]? {
         var headers = [String: String]()
-        //        headers["Authorization"] = "apiKey 0c0fd44b3069449ea8824583372d3448"
-        //        headers["Authorization"] = "apiKey ab2ef7b4b6cd491a971e888de5b0f81d"
-        headers["Authorization"] = "apiKey 22e4ed26c2334690aa91005e370acd47"
+//                headers["Authorization"] = "apiKey 0c0fd44b3069449ea8824583372d3448"
+                headers["Authorization"] = "apiKey ab2ef7b4b6cd491a971e888de5b0f81d"
+//        headers["Authorization"] = "apiKey 22e4ed26c2334690aa91005e370acd47"
         return headers
     }
     
@@ -37,17 +37,32 @@ class NetworkService: Networking {
         
         switch typeRequest {
         case .main:
+            if !filter.source.isEmpty {
+                parameters["sources"] = filter.source
+            } else {
+                if filter.category != .all {
+                    parameters["category"] = filter.category.rawValue
+                }
+                if !filter.language.isEmpty {
+                    parameters["language"] = filter.language
+                }
+                if !filter.country.isEmpty {
+                    parameters["country"] = filter.country
+                }
+            }
+        case .source:
+            if !filter.source.isEmpty {
+                parameters["sources"] = filter.source
+            }
+            if !filter.country.isEmpty {
+                parameters["country"] = filter.country
+            }
             if filter.category != .all {
                 parameters["category"] = filter.category.rawValue
             }
             if !filter.language.isEmpty {
                 parameters["language"] = filter.language
             }
-            if !filter.country.isEmpty {
-                parameters["country"] = filter.country
-            }
-        case .source:
-            parameters["sources"] = filter.source
         case .search:
             parameters["q"] = filter.query
         }

@@ -23,8 +23,7 @@ class CategoryCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            backgroundColor = self.isSelected ? .opaqueSeparator : .white
-            
+            backgroundColor = self.isSelected ? .lightGray : .white
         }
     }
     

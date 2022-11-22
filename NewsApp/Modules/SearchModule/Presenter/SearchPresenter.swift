@@ -42,7 +42,6 @@ class SearchPresenter: SearchViewPresenterProtocol {
         self.view = view
         self.networkService = networkService
         self.storageService = storageService
-        getNews()
     }
     
     
@@ -52,6 +51,7 @@ class SearchPresenter: SearchViewPresenterProtocol {
     }
     
     func getNews() {
+        results = []
         networkService.fetchQuery(filter: filter) { [weak self] results in
             guard let self = self else { return }
             if let results = results {

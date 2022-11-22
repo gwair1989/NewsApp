@@ -27,6 +27,7 @@ class FilterViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.delegate?.setFilter(filter: presenter.filter)
+        navigationController?.setTitleColor(color: .black)
     }
     
     private func bind() {

@@ -61,6 +61,7 @@ class FilterPresenter: FilterViewControllerProtocol {
     }
 
     func getSourses() {
+        print(filter)
         networkService.fetchSourse(filter: filter) { [weak self] results in
             guard let self, let results else { return }
             DispatchQueue.main.async {

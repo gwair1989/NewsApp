@@ -48,6 +48,7 @@ final class SourceCell: UITableViewCell {
     
     
     private func setupUI() {
+        backgroundColor = .clear
         addSubview(nameLabel)
         addSubview(descriptionLabel)
         addConstraint()

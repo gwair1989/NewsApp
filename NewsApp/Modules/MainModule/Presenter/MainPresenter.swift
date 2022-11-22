@@ -17,6 +17,7 @@ protocol MainViewPresenterProtocol: AnyObject {
     func addToFavorite(news: FavouriteModel)
     var category: CategoryNews { get set }
     var filter: Filter { get set }
+    func refreshFilter()
 }
 
 
@@ -65,6 +66,9 @@ class MainPresenter: MainViewPresenterProtocol {
     func getNews() {
         networkService.fetchNews(filter: filter) { [weak self] results in
             guard let self = self else { return }
+            if let message = results?.message {
+                print(message)
+            } else {
             if let results = results {
                 self.news = results
                 if self.results.count < results.totalResults  {
@@ -86,8 +90,12 @@ class MainPresenter: MainViewPresenterProtocol {
                 }
             }
         }
+        }
     }
     
+    func refreshFilter() {
+        filter = Filter(page: 1, country: "ua", language: "", source: "", category: .all)
+    }
     
     
     

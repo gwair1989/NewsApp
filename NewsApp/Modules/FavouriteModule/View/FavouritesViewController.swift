@@ -20,6 +20,7 @@ class FavouritesViewController: UIViewController {
         presenter = FavouritesPresenter(view: self)
         bind()
         favouritesView.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        navigationController?.setTitleColor(color: .black)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,18 +29,22 @@ class FavouritesViewController: UIViewController {
     }
     
     private func bind() {
-        favouritesView.didClickReadButton = { [weak self] urlString in
-            guard let self else { return }
-            guard let url = URL(string: urlString) else { return }
-            let vc = DatailViewController(url: url)
-            self.navigationController?.pushViewController(vc, animated: true)
-            self.presenter.tapOnTheDetail(urlSring: urlString)
-        }
 
-        favouritesView.didClickAddButton = { [weak self] urlString in
-            guard let self else { return }
-            self.presenter.removeFromFavourite(url: urlString)
-            self.presenter.getNews()
+        favouritesView.didClickButton = { [weak self] pressedButton, urlString in
+            guard let self, let url = URL(string: urlString) else { return }
+            switch pressedButton {
+            case .read:
+                let vc = DatailViewController(url: url)
+                self.navigationController?.pushViewController(vc, animated: true)
+                self.presenter.tapOnTheDetail(urlSring: urlString)
+            case .add:
+                self.presenter.removeFromFavourite(url: urlString)
+                self.presenter.getNews()
+            case .share:
+                let shareController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                shareController.popoverPresentationController?.permittedArrowDirections = .any
+                self.present(shareController, animated: true, completion: nil)
+            }
         }
 
     }

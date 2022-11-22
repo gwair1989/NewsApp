@@ -21,6 +21,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         presenter = SearchPresenter(view: self)
         title = "Search"
+        navigationController?.setTitleColor(color: .black)
         bind()
     }
     
@@ -38,13 +39,21 @@ class SearchViewController: UIViewController {
         }
         
         mainView.didSearchQuery = { [weak self] query in
-            guard let self, let query else { return }
+            guard let self, let query, !query.isEmpty else { return }
             if self.timer != nil {
                 self.timer?.invalidate()
             }
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
                 self.presenter.query = query
             })
+        }
+        
+        mainView.didClickShareButton = { [weak self] urlString in
+            guard let self else { return }
+            guard let url = URL(string: urlString) else { return }
+            let shareController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+            shareController.popoverPresentationController?.permittedArrowDirections = .any
+            self.present(shareController, animated: true, completion: nil)
         }
     }
 }

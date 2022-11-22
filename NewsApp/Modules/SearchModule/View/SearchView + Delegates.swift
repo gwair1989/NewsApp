@@ -14,15 +14,16 @@ extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCell.identifier, for: indexPath) as! NewsCell
-            if !dataArray.isEmpty {
-                cell.mainModel = dataArray[indexPath.row]
-                cell.isFavourite = false
-                cell.didClickReadButton = { [weak self] in
+        if !dataArray.isEmpty {
+            cell.mainModel = dataArray[indexPath.row]
+            cell.isFavourite = false
+            cell.didClickButton = { [weak self] pressedButton in
+                switch pressedButton {
+                case .read:
                     if let url = self?.dataArray[indexPath.row].url {
                         self?.didClickReadButton?(url)
                     }
-                }
-                cell.didClickAddButton = { [weak self] in
+                case .add:
                     if let article = self?.dataArray[indexPath.row] {
                         self?.didClickAddButton?(FavouriteModel(source: article.source,
                                                                 author: article.author,
@@ -31,8 +32,14 @@ extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
                                                                 url: article.url,
                                                                 image: cell.newsImage.image?.pngData()))
                     }
+                case .share:
+                    if let url = self?.dataArray[indexPath.row].url {
+                        self?.didClickShareButton?(url)
+                    }
                 }
+                
             }
+        }
         return cell
     }
     
@@ -47,6 +54,10 @@ extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 0, left: sectionInserts.left, bottom: sectionInserts.bottom, right: sectionInserts.right)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searchBar.resignFirstResponder()
+    }
 }
 
 
@@ -59,6 +70,7 @@ extension SearchView: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = nil
+        dataArray = []
         didSearchQuery?(nil)
         searchBar.resignFirstResponder()
     }

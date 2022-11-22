@@ -12,6 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBar.backgroundColor = .white
         self.tabBar.isTranslucent = false
         UITabBar.appearance().barTintColor = .white
         self.tabBar.tintColor = .black
@@ -20,7 +21,7 @@ class MainTabBarController: UITabBarController {
         let searchVC = SearchViewController()
         let favouriteVC = FavouritesViewController()
         
-        guard let homeImage = UIImage(named: "home"),
+        guard let homeImage = UIImage(systemName: "house")?.withRenderingMode(.alwaysTemplate),
               let heartImage = UIImage(systemName: "bookmark.fill")?.withRenderingMode(.alwaysTemplate),
               let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
         else { return }

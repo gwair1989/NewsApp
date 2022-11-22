@@ -17,20 +17,14 @@ extension FavouritesView: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCell.identifier, for: indexPath) as! NewsCell
         cell.isFavourite = true
-            if !articles.isEmpty {
-                cell.favouriteModel = articles[indexPath.row]
-                cell.didClickReadButton = { [weak self] in
-                    if let url = self?.articles[indexPath.row].url {
-                        self?.didClickReadButton?(url)
-                    }
-                }
-                cell.didClickAddButton = { [weak self] in
-                    if let url = self?.articles[indexPath.row].url {
-                        self?.didClickAddButton?(url)
-                    }
+        if !articles.isEmpty {
+            cell.favouriteModel = articles[indexPath.row]
+            cell.didClickButton = { [weak self] pressedButton in
+                if let url = self?.articles[indexPath.row].url {
+                    self?.didClickButton?(pressedButton, url)
                 }
             }
-
+        }
         return cell
     }
     

@@ -14,6 +14,7 @@
 		1F25EC5A291954C9008D82C6 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25EC59291954C9008D82C6 /* FilterViewController.swift */; };
 		1F25EC5C2919584D008D82C6 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25EC5B2919584D008D82C6 /* FilterView.swift */; };
 		1F25EC5E29195D38008D82C6 /* SourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25EC5D29195D38008D82C6 /* SourceCell.swift */; };
+		1F5B1BC5292D474E0055D583 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B1BC4292D474E0055D583 /* NavigationBar.swift */; };
 		1F92217B2912FEFF00DA9AE0 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F92217A2912FEFF00DA9AE0 /* NewsCell.swift */; };
 		1F9F07662915A0C900CFCE6B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F9F07652915A0C900CFCE6B /* SnapKit */; };
 		1F9F07692915A0E300CFCE6B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1F9F07682915A0E300CFCE6B /* SDWebImage */; };
@@ -65,6 +66,7 @@
 		1F25EC59291954C9008D82C6 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		1F25EC5B2919584D008D82C6 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		1F25EC5D29195D38008D82C6 /* SourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCell.swift; sourceTree = "<group>"; };
+		1F5B1BC4292D474E0055D583 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		1F92217A2912FEFF00DA9AE0 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		1FA13782291577D100432E98 /* SavedArticle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1FA13783291577D100432E98 /* SavedArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -249,8 +251,8 @@
 		1FE4D3722912B4EE0036C2BE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				1FF56514291F99F2007C6490 /* SearchModule */,
 				1FE4D37029129F960036C2BE /* MainTabBarController.swift */,
+				1FF56514291F99F2007C6490 /* SearchModule */,
 				1FE4D3732912B4FC0036C2BE /* MainModule */,
 				1FFF3B59291AA54D00B956F9 /* FilterModule */,
 				1FB7927729152E6E00D68CF1 /* DetailModule */,
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				1FFF3B5A291AAB5F00B956F9 /* TextField.swift */,
+				1F5B1BC4292D474E0055D583 /* NavigationBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				1FB7927A29152EC200D68CF1 /* DetailView.swift in Sources */,
 				1FF5651F291F9F45007C6490 /* SearchView + Delegates.swift in Sources */,
 				1FC01FE5291CF45600054579 /* FilterModel.swift in Sources */,
+				1F5B1BC5292D474E0055D583 /* NavigationBar.swift in Sources */,
 				1F25EC5E29195D38008D82C6 /* SourceCell.swift in Sources */,
 				1FFF3B5B291AAB5F00B956F9 /* TextField.swift in Sources */,
 				1F05FE912918481800A80A9C /* FavouritesView.swift in Sources */,
@@ -675,10 +679,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2D98858FQA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -701,10 +708,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2D98858FQA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (

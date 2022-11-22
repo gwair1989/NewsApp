@@ -18,10 +18,10 @@ class SearchView: BaseView {
     
     var didClickReadButton: ((String) -> Void)?
     var didClickAddButton: ((FavouriteModel) -> Void)?
-    
+    var didClickShareButton: ((String) -> Void)?
     var didSearchQuery: ((String?) -> Void)?
     
-    private let searchBar: UISearchBar = {
+    let searchBar: UISearchBar = {
         let obj = UISearchBar()
         obj.backgroundImage = UIImage()
         obj.placeholder = "Search"
@@ -45,6 +45,7 @@ class SearchView: BaseView {
         
         addSubview(searchBar)
         searchBar.delegate = self
+        searchBar.searchTextField.leftView?.tintColor = .black
         
         collectionView.delegate = self
         collectionView.dataSource = self

@@ -18,19 +18,25 @@ extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
             if !articles.isEmpty {
                 cell.mainModel = articles[indexPath.row]
                 cell.isFavourite = false
-                cell.didClickReadButton = { [weak self] in
-                    if let url = self?.articles[indexPath.row].url {
-                        self?.didClickReadButton?(url)
-                    }
-                }
-                cell.didClickAddButton = { [weak self] in
-                    if let article = self?.articles[indexPath.row] {
-                        self?.didClickAddButton?(FavouriteModel(source: article.source,
-                                                                author: article.author,
-                                                                title: article.title,
-                                                                description: article.description,
-                                                                url: article.url,
-                                                                image: cell.newsImage.image?.pngData()))
+                cell.didClickButton = { [weak self] pressedButton in
+                    switch pressedButton {
+                    case .read:
+                        if let url = self?.articles[indexPath.row].url {
+                            self?.didClickReadButton?(url)
+                        }
+                    case .add:
+                        if let article = self?.articles[indexPath.row] {
+                            self?.didClickAddButton?(FavouriteModel(source: article.source,
+                                                                    author: article.author,
+                                                                    title: article.title,
+                                                                    description: article.description,
+                                                                    url: article.url,
+                                                                    image: cell.newsImage.image?.pngData()))
+                        }
+                    case .share:
+                        if let url = self?.articles[indexPath.row].url {
+                            self?.didClickShareButton?(url)
+                        }
                     }
                 }
             }

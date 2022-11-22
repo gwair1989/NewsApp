@@ -12,8 +12,11 @@ class FavouritesView: BaseView {
 
     var articles: [FavouriteModel] = []
     
-    var didClickReadButton: ((String) -> Void)?
-    var didClickAddButton: ((String) -> Void)?
+//    var didClickReadButton: ((String) -> Void)?
+//    var didClickAddButton: ((String) -> Void)?
+//    var didClickShareButton: ((String) -> Void)?
+//    
+    var didClickButton: ((CellButtonTap, String) -> Void)?
     
     init() {
         super.init(frame: CGRect.zero)

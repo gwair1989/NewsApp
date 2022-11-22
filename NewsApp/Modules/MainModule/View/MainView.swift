@@ -14,6 +14,7 @@ class MainView: BaseView {
     
     var didClickReadButton: ((String) -> Void)?
     var didClickAddButton: ((FavouriteModel) -> Void)?
+    var didClickShareButton: ((String) -> Void)?
     
     var updateUIWithData: (() -> Void)?
     

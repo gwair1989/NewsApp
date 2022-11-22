@@ -49,6 +49,14 @@ class MainViewController: UIViewController {
             guard let self else { return }
             self.presenter.filter.page += 1
         }
+        
+        mainView.didClickShareButton = { [weak self] urlString in
+            guard let self else { return }
+            guard let url = URL(string: urlString) else { return }
+            let shareController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+            shareController.popoverPresentationController?.permittedArrowDirections = .any
+            self.present(shareController, animated: true, completion: nil)
+        }
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
@@ -57,17 +65,28 @@ class MainViewController: UIViewController {
     }
     
     private func setupNavBar() {
-        let image = UIImage(systemName: "list.bullet")
-        let filterButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(tapFilterButton))
+        navigationController?.setTitleColor(color: .black)
+
+        let imageFilterButton = UIImage(systemName: "list.bullet")
+        let filterButton = UIBarButtonItem(image: imageFilterButton, style: .plain, target: self, action: #selector(tapFilterButton))
         filterButton.tintColor = .black
         navigationItem.leftBarButtonItem = filterButton
         navigationController?.navigationBar.prefersLargeTitles = false
+        
+        let imageRefreshButton = UIImage(systemName: "gobackward")
+        let refreshButton = UIBarButtonItem(image: imageRefreshButton, style: .plain, target: self, action: #selector(tapRefreshButton))
+        refreshButton.tintColor = .black
+        navigationItem.rightBarButtonItem = refreshButton
     }
     
     @objc private func tapFilterButton() {
         let vc = FilterViewController()
         vc.delegate = self
         self.navigationController?.present(vc, animated: true)
+    }
+    
+    @objc private func tapRefreshButton() {
+        presenter.refreshFilter()
     }
     
 }

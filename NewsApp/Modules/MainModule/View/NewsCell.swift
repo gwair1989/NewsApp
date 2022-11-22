@@ -8,12 +8,19 @@
 import UIKit
 import SDWebImage
 
+enum CellButtonTap {
+    case read
+    case add
+    case share
+}
+
+
+
 class NewsCell: UICollectionViewCell {
     
     static let identifier = "NewsCell"
-    
-    var didClickReadButton: (() -> Void)?
-    var didClickAddButton: (() -> Void)?
+
+    var didClickButton: ((CellButtonTap) -> Void)?
     
     var isFavourite = false {
         didSet {
@@ -145,7 +152,7 @@ class NewsCell: UICollectionViewCell {
         obj.addAction(UIAction { [weak self]  _ in
             guard let self else { return }
             self.isFavourite = !self.isFavourite
-            self.didClickAddButton?()
+            self.didClickButton?(.add)
         }, for: .touchUpInside)
         obj.translatesAutoresizingMaskIntoConstraints = false
         return obj
@@ -159,7 +166,7 @@ class NewsCell: UICollectionViewCell {
         obj.setTitleColor(UIColor(red: 0.231, green: 0.537, blue: 0.541, alpha: 1), for: .normal)
         obj.addAction(UIAction { [weak self]  _ in
             guard let self else { return }
-            self.didClickReadButton?()
+            self.didClickButton?(.read)
         }, for: .touchUpInside)
         obj.translatesAutoresizingMaskIntoConstraints = false
         return obj
@@ -173,7 +180,7 @@ class NewsCell: UICollectionViewCell {
         obj.tintColor = .lightGray
         obj.addAction(UIAction { [weak self]  _ in
             guard let self else { return }
-            obj.tintColor = .black
+            self.didClickButton?(.share)
         }, for: .touchUpInside)
         obj.translatesAutoresizingMaskIntoConstraints = false
         return obj
@@ -206,6 +213,7 @@ class NewsCell: UICollectionViewCell {
     
     
     private func setupUI() {
+        backgroundColor = .clear
         contentView.addSubview(newsImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
