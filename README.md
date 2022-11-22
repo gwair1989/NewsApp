@@ -1,3 +1,5 @@
+[![Header](https://github.com/gwair1989/Test_Project_for_Pecode/blob/main/News.gif)](https://github.com/gwair1989/Test_Project_for_Pecode)
+
   Here is the link of the task:
   
 https://newsapi.org/docs/get-started
